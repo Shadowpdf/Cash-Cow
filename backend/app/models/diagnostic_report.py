@@ -6,7 +6,7 @@ from .base import Base
 from typing import TYPE_CHECKING
 from datetime import datetime
 
-from enums import ServiceStatus, ServicePriority
+from .enums import ServiceStatus, ServicePriority
 from sqlalchemy import Enum as SqlEnum, Text, func
 from sqlalchemy import Integer, String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
