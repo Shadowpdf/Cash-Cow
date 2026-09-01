@@ -3,13 +3,13 @@
 
 """
 
-from .base import Base
-from typing import TYPE_CHECKING
 
+from __future__ import annotations
+
+from .base import Base
 
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
 
 
 class Branch(Base):
@@ -19,10 +19,10 @@ class Branch(Base):
     name: Mapped[str] = mapped_column(String(100))
     location_region: Mapped[str] = mapped_column(String(50))
     capacity: Mapped[int] = mapped_column(Integer)
-    supervisor_id: Mapped[int] = mapped_column(Integer,)
+    supervisor_id: Mapped[int] = mapped_column(Integer)
 
 
     def __repr__(self) -> str:
-            return (f"Branch-ID(id={self.id}, name={self.name!r}, "
-                    f"Location={self.location_region!r}, supervisor-id={self.supervisor_id})")
+        return (f"Branch-ID(id={self.id}, name={self.name!r}, "
+                f"Location={self.location_region!r})")
 
