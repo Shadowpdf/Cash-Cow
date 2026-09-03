@@ -9,3 +9,12 @@ class BranchRead(BaseModel):
     supervisor_id: int
 
     model_config = ConfigDict(from_attributes=True)
+
+class BranchMaintenanceRisk(BaseModel):
+    branch_id: int
+    branch_name: str
+    total_atms: int
+    maintenance_atms: int
+    maintenance_percentage: float
+
+    model_config = ConfigDict(from_attributes=True)
