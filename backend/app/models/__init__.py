@@ -10,11 +10,12 @@ from .branch import Branch
 from .diagnostic_report import DiagnosticReport
 from .service_call import ServiceCall
 from .technician import Technician
+from .user import User, UserRole
 from .base import Base
 
 __all__ = [
     "Base",
     "AtmStatus", "ServicePriority","ServiceStatus",
     "ATM", "Branch", "DiagnosticReport", "ServiceCall",
-    "Technician"
+    "Technician", "User", "UserRole"
 ]

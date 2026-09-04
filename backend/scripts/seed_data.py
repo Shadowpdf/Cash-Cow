@@ -12,7 +12,9 @@ from decimal import Decimal
 from sqlalchemy import delete
 
 from app.database import AsyncSessionLocal
-from app.models import Branch, ATM, ServiceCall, DiagnosticReport, AtmStatus, ServicePriority, ServiceStatus, Technician
+from app.models import Branch, ATM, ServiceCall, DiagnosticReport, AtmStatus, ServicePriority, ServiceStatus, Technician, User, UserRole
+from app.security import hash_password
+
 
 
 
@@ -26,6 +28,7 @@ async def seed_data() -> None:
             await session.execute(delete(ATM))
             await session.execute(delete(Technician))
             await session.execute(delete(Branch))
+            await session.execute(delete(User))
 
 
             session.add_all([
@@ -85,7 +88,19 @@ async def seed_data() -> None:
 
             ])
 
+
+            await session.flush()
+
+            session.add_all([
+                User(username="admin", hashed_password=hash_password("AdminPass123!"), role=UserRole.OPERATIONS_ADMIN),
+                User(username="operator", hashed_password=hash_password("OperatorPass123!"),role=UserRole.FIELD_TECHNICIAN),
+                User(username="auditor", hashed_password=hash_password("AuditorPass123!"),role=UserRole.AUDITOR),
+            ])
+
             await session.commit()
+
+
+
             print("Seed data created successfully")
         except Exception:
             #undos the seeding
